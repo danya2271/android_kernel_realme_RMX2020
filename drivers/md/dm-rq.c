@@ -396,8 +396,8 @@ static void dm_dispatch_clone_request(struct request *clone, struct request *rq)
 {
 	blk_status_t r;
 
-	if (blk_queue_io_stat(clone->q))
-		clone->rq_flags |= RQF_IO_STAT;
+//	if (blk_queue_io_stat(clone->q))
+//		clone->rq_flags |= RQF_IO_STAT;
 
 	clone->start_time = jiffies;
 	r = blk_insert_cloned_request(clone->q, clone);
