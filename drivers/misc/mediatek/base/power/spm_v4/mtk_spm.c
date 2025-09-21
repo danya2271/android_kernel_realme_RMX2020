@@ -1448,9 +1448,6 @@ void sspm_ipi_lock_spm_scenario(int start,
 		atomic_inc(&ipi_lock_cnt);
 	else
 		atomic_dec(&ipi_lock_cnt);
-
-	/* FTRACE tag */
-	trace_sspm_ipi(start, id, opt);
 }
 #endif /* CONFIG_MTK_TINYSYS_SSPM_SUPPORT */
 

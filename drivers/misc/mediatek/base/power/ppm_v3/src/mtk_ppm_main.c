@@ -650,21 +650,10 @@ int mt_ppm_main(void)
 	list_for_each_entry(pos, &ppm_main_info.policy_list, link) {
 		if ((pos->is_activated)
 			&& pos->update_limit_cb) {
-			int idx;
-
 			ppm_lock(&pos->lock);
 			policy_mask |= 1 << pos->policy;
 			pos->update_limit_cb();
 			pos->is_limit_updated = true;
-
-			for (idx = 0; idx < pos->req.cluster_num; idx++) {
-				trace_ppm_user_setting(
-					pos->policy,
-					idx,
-					pos->req.limit[idx].min_cpufreq_idx,
-					pos->req.limit[idx].max_cpufreq_idx
-				);
-			}
 
 			ppm_unlock(&pos->lock);
 		}

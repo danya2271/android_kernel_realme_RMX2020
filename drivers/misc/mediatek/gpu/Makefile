@@ -14,6 +14,8 @@
 obj-y += ged/
 obj-y += hal/
 
+KBUILD_CFLAGS += -Wno-default-const-init-var-unsafe
+
 MTK_GPU_VERSION = $(subst ",,$(CONFIG_MTK_GPU_VERSION))
 # GPU R5P0
 ifeq ($(CONFIG_MTK_GPU_R5P0),y)
