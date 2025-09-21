@@ -129,7 +129,6 @@ EXPORT_SYMBOL(connectivity_export_show_stack);
 
 void connectivity_export_tracing_record_cmdline(struct task_struct *tsk)
 {
-	tracing_record_cmdline(tsk);
 }
 EXPORT_SYMBOL(connectivity_export_tracing_record_cmdline);
 

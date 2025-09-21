@@ -113,7 +113,6 @@ int update_userlimit_cpu_freq(int kicker, int num_cluster
 			, sizeof(struct ppm_limit_data), GFP_KERNEL);
 	if (!final_freq) {
 		retval = -1;
-		perfmgr_trace_printk("cpu_ctrl", "!final_freq\n");
 		goto ret_update;
 	}
 	if (num_cluster != perfmgr_clusters) {
@@ -121,8 +120,6 @@ int update_userlimit_cpu_freq(int kicker, int num_cluster
 				"num_cluster : %d perfmgr_clusters: %d, doesn't match\n",
 				num_cluster, perfmgr_clusters);
 		retval = -1;
-		perfmgr_trace_printk("cpu_ctrl",
-			"num_cluster != perfmgr_clusters\n");
 		goto ret_update;
 	}
 
@@ -140,7 +137,6 @@ int update_userlimit_cpu_freq(int kicker, int num_cluster
 	len += snprintf(msg + len, sizeof(msg) - len, "[%d] ", kicker);
 	if (len < 0) {
 		retval = -EIO;
-		perfmgr_trace_printk("cpu_ctrl", "return -EIO 1\n");
 		goto ret_update;
 	}
 	for_each_perfmgr_clusters(i) {
@@ -153,7 +149,6 @@ int update_userlimit_cpu_freq(int kicker, int num_cluster
 		freq_set[kicker][i].min, freq_set[kicker][i].max);
 		if (len < 0) {
 			retval = -EIO;
-			perfmgr_trace_printk("cpu_ctrl", "return -EIO 2\n");
 			goto ret_update;
 		}
 
@@ -167,7 +162,6 @@ int update_userlimit_cpu_freq(int kicker, int num_cluster
 				"[0x %lx] ", policy_mask[i]);
 		if (len1 < 0) {
 			retval = -EIO;
-			perfmgr_trace_printk("cpu_ctrl", "return -EIO 3\n");
 			goto ret_update;
 		}
 	}
@@ -199,7 +193,6 @@ int update_userlimit_cpu_freq(int kicker, int num_cluster
 				current_freq[i].min, current_freq[i].max);
 		if (len < 0) {
 			retval = -EIO;
-			perfmgr_trace_printk("cpu_ctrl", "return -EIO 4\n");
 			goto ret_update;
 		}
 	}

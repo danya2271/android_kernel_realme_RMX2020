@@ -318,7 +318,6 @@ EXPORT_SYMBOL(met_cpu_frequency);
 
 void met_tracing_record_cmdline(struct task_struct *tsk)
 {
-	tracing_record_cmdline(tsk);
 }
 EXPORT_SYMBOL(met_tracing_record_cmdline);
 

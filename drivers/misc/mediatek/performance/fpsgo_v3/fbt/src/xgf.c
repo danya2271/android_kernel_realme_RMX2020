@@ -36,17 +36,6 @@
 #include "fpsgo_base.h"
 #include "fpsgo_sysfs.h"
 
-FPSFO_DECLARE_SYSTRACE(x, irq_handler_entry)
-FPSFO_DECLARE_SYSTRACE(x, irq_handler_exit)
-FPSFO_DECLARE_SYSTRACE(x, softirq_entry)
-FPSFO_DECLARE_SYSTRACE(x, softirq_exit)
-FPSFO_DECLARE_SYSTRACE(x, ipi_raise)
-FPSFO_DECLARE_SYSTRACE(x, ipi_entry)
-FPSFO_DECLARE_SYSTRACE(x, ipi_exit)
-FPSFO_DECLARE_SYSTRACE(x, sched_wakeup)
-FPSFO_DECLARE_SYSTRACE(x, sched_wakeup_new)
-FPSFO_DECLARE_SYSTRACE(x, sched_switch)
-
 static DEFINE_MUTEX(xgf_main_lock);
 static int xgf_enable;
 static int xgf_ko_ready;

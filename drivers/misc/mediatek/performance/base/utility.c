@@ -158,7 +158,6 @@ void perfmgr_trace_log(char *module, const char *fmt, ...)
 	if (unlikely(len == 256))
 		log[255] = '\0';
 	va_end(args);
-	perfmgr_trace_printk(module, log);
 }
 
 #endif

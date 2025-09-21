@@ -104,7 +104,6 @@ static bool sentuevent(const char *src)
 		strlcpy(event_string, src, string_size);
 		if (event_string[0] == '\0') { /*string is null*/
 
-			perfmgr_trace_printk("cpu_loading", "string is null");
 			return false;
 		}
 #if 1
@@ -112,7 +111,6 @@ static bool sentuevent(const char *src)
 				&cpu_loading_object.this_device->kobj,
 				KOBJ_CHANGE, envp);
 		if (ret != 0) {
-			perfmgr_trace_printk("cpu_loading", "uevent failed");
 			show_debug("uevent failed");
 
 			return false;

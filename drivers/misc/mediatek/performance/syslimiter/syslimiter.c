@@ -74,8 +74,6 @@ static void syslimiter_update_limit_freq(void)
 		goto out;
 	}
 
-	perfmgr_trace_count(dfrc_fps, "dfrc_fps");
-
 	fps60_tolerance = 60 + 60*tolerance_percent/100;
 	fps90_tolerance = 90 + 90*tolerance_percent/100;
 	fps120_tolerance = 120 + 120*tolerance_percent/100;
@@ -84,22 +82,18 @@ static void syslimiter_update_limit_freq(void)
 	if (limit_freq_at_60 > 0 &&
 		dfrc_fps > 0 && dfrc_fps <= fps60_tolerance) {
 		freq_to_set[cluster_1].max = limit_freq_at_60;
-		perfmgr_trace_count(limit_freq_at_60, "limit_freq_at_60");
 		goto out;
 	} else if (limit_freq_at_90 > 0 &&
 		dfrc_fps > fps60_tolerance && dfrc_fps <= fps90_tolerance) {
 		freq_to_set[cluster_1].max = limit_freq_at_90;
-		perfmgr_trace_count(limit_freq_at_90, "limit_freq_at_90");
 		goto out;
 	} else if (limit_freq_at_120 > 0 &&
 		dfrc_fps > fps90_tolerance && dfrc_fps <= fps120_tolerance) {
 		freq_to_set[cluster_1].max = limit_freq_at_120;
-		perfmgr_trace_count(limit_freq_at_120, "limit_freq_at_120");
 		goto out;
 	} else if (limit_freq_at_144 > 0 &&
 		dfrc_fps > fps120_tolerance && dfrc_fps <= fps144_tolerance) {
 		freq_to_set[cluster_1].max = limit_freq_at_144;
-		perfmgr_trace_count(limit_freq_at_144, "limit_freq_at_144");
 		goto out;
 	} else
 		freq_to_set[cluster_1].max = -1;
@@ -111,8 +105,6 @@ out:
 		update_userlimit_cpu_freq(CPU_KIR_SYSLIM,
 			perfmgr_clusters, freq_to_set);
 		current_freq[cluster_1].max = freq_to_set[cluster_1].max;
-		perfmgr_trace_count(current_freq[cluster_1].max,
-			"current_freq");
 	}
 	mutex_unlock(&syslimiter);
 
