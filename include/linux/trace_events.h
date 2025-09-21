@@ -500,6 +500,7 @@ extern int trace_event_get_offsets(struct trace_event_call *call);
 
 int trace_set_clr_event(const char *system, const char *event, int set);
 
+#ifdef CONFIG_TRACING
 /*
  * The double __builtin_constant_p is because gcc will give us an error
  * if we try to allocate the static variable to fmt if it is not a
@@ -518,6 +519,10 @@ do {									\
 	} else								\
 		__trace_printk(ip, fmt, ##args);			\
 } while (0)
+#else
+#define event_trace_printk(ip, fmt, args...)				\
+do {} while (0)
+#endif
 
 #ifdef CONFIG_PERF_EVENTS
 struct perf_event;
