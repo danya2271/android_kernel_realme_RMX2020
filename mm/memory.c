@@ -3194,6 +3194,7 @@ int do_swap_page(struct vm_fault *vmf)
 	struct page *page = NULL, *swapcache = NULL;
 	struct mem_cgroup *memcg;
 	struct vma_swap_readahead swap_ra;
+	struct swap_info_struct *si;
 	swp_entry_t entry;
 	pte_t pte;
 	int locked;
@@ -3259,7 +3260,7 @@ int do_swap_page(struct vm_fault *vmf)
 			ret = VM_FAULT_RETRY;
 			goto out;
 		}
-		struct swap_info_struct *si = swp_swap_info(entry);
+		si == swp_swap_info(entry);
 
 		if (si->flags & SWP_SYNCHRONOUS_IO &&
 				__swap_count(si, entry) == 1) {
